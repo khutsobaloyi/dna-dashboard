@@ -1,0 +1,27 @@
+<div *ngIf="finalEmployees">
+    <h2> List of Employees</h2>
+    <ul>
+      <li *ngFor="let employee of finalEmployees" >
+        <a routerLink="/detail/{{employee.id}}">
+        <span>{{employee.id}}</span>
+      <span> | {{employee.id}}</span>
+      <span> | {{employee.name}}</span>
+      <span> | {{employee.surname}}</span>
+      <span> | {{employee.blank_id}}</span>
+      <span> | {{employee.start_date}}</span>
+      <span> | {{employee.end_date}}</span>
+      <span> | {{employee.role}}</span>
+      <span> | {{employee.department[0].dept_id}}</span>
+      <span> | {{employee.department[0].dept_name}}</span>
+      <span> | {{employee.store.company_initials}}</span>
+      <span> | {{employee.store.country}}</span>
+      <span> | {{employee.store.store_id}}</span>
+      <span> | {{employee.store.store_name}}</span>
+      <span> | {{employee.manager_id}}</span>
+      <span> | {{employee.email}}</span>
+      <span> | {{employee.mobile}}</span>
+    </a>
+      </li>
+    </ul>
+</div>
+
