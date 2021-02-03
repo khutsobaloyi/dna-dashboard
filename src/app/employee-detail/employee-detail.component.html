@@ -1,12 +1,12 @@
-<div class="detail_container">
-
-    <h2>{{finalEmployee.name | uppercase}} Details</h2>
-    <div>id: {{finalEmployee.id}}</div>
-    <div>name: {{finalEmployee.name}}</div>
-    <div>surname: {{finalEmployee.surname}}</div>
-    <div><b>etc...</b></div>
-
-    <button (click)="goBack()">go back</button>
-    <button>Edit</button>
-    <button>Remove</button>
+<div class="detail-container">
+  <div class="nav-buttons">
+    <button (click)="goBack()" class="back">go back</button>
+    <button class="edit">Edit</button>
+    <button class="remove">Remove</button>
+  </div>
+  <h2>{{ finalEmployee.name | uppercase }} Details</h2>
+  <div>id: {{ finalEmployee.id }}</div>
+  <div>name: {{ finalEmployee.name }}</div>
+  <div>surname: {{ finalEmployee.surname }}</div>
+  <div><b>etc...</b></div>
 </div>

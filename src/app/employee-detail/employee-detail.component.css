@@ -1,20 +1,26 @@
-.container {
+
+.detail-container {
     display: flex;
     
     justify-content: center;
     flex-direction: column;
-    flex-basis: 45%;
+    max-width: 80%;
+    margin: auto;
 }
 
 h2 {
-    color: rgba(0, 0, 0, 0.479);
+    color: rgba(0, 0, 0, 0.679);
 }
 
 .container div {
     padding: 5px;
     
 }
+.nav-buttons {
+    display: flex;
+    flex-direction: row;
 
+}
 button {
     border-radius: 5px;
     background-color: #af9d4c; 
@@ -24,6 +30,8 @@ button {
     text-align: center;
     text-decoration: none;
     font-size: 12px;
+    margin: 10px;
+    max-width: 100px;
 }
 
 button:hover {
