@@ -1,27 +1,53 @@
 <div *ngIf="finalEmployees">
-    <h2> List of Employees</h2>
-    <ul>
-      <li *ngFor="let employee of finalEmployees" >
+  <nav>
+    <button>New Employee</button>
+  </nav>
+    <caption> List of Employees</caption>
+    <table >
+      <tr>
+        <th>ID</th>
+        <th>SURNAME</th>
+        <th>NAME</th>
+        <th>START DATE</th>
+        <th>END DATE</th>
+        <th>ROLE</th>
+        <th>DEPT ID</th>
+        <th>DEPT NAME</th>
+        <th>COMPANY INITIALS</th>
+        <th>COUNTRY</th>
+        <th>STORE ID</th>
+        <th>STORE NAME</th>
+        <th>MANAGER ID</th>
+        <th>EMAIL</th>
+        <th>MOBILE NO.</th>
+      </tr>
+      
+      <tr *ngFor="let employee of finalEmployees">
+
         <a routerLink="/detail/{{employee.id}}">
-        <span>{{employee.id}}</span>
-      <span> | {{employee.id}}</span>
-      <span> | {{employee.name}}</span>
-      <span> | {{employee.surname}}</span>
-      <span> | {{employee.blank_id}}</span>
-      <span> | {{employee.start_date}}</span>
-      <span> | {{employee.end_date}}</span>
-      <span> | {{employee.role}}</span>
-      <span> | {{employee.department[0].dept_id}}</span>
-      <span> | {{employee.department[0].dept_name}}</span>
-      <span> | {{employee.store.company_initials}}</span>
-      <span> | {{employee.store.country}}</span>
-      <span> | {{employee.store.store_id}}</span>
-      <span> | {{employee.store.store_name}}</span>
-      <span> | {{employee.manager_id}}</span>
-      <span> | {{employee.email}}</span>
-      <span> | {{employee.mobile}}</span>
-    </a>
-      </li>
-    </ul>
+        <td> {{employee.id}}</td>
+      </a>
+        <td> {{employee.name}}</td>
+        <td> {{employee.surname}}</td>
+        
+        <td>{{employee.start_date}}</td>
+        <td>{{employee.end_date}}</td>
+        <td>{{employee.role}}</td>
+
+        <td>{{employee.department[0].dept_id}}</td>
+        <td>{{employee.department[0].dept_name}}</td>
+        <td>{{employee.store.company_initials}}</td>
+
+        <td>{{employee.store.country}}</td>
+        <td>{{employee.store.store_id}}</td>
+        <td>{{employee.store.store_name}}</td>
+        <td>{{employee.manager_id}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.mobile}}</td>
+      
+      </tr>
+    
+    </table>
+    
 </div>
 

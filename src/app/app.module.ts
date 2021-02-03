@@ -10,6 +10,7 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     EmployeeDetailComponent,
     EditEmployeeComponent,
     AddEmployeeComponent,
-    DeleteEmployeeComponent
+    DeleteEmployeeComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

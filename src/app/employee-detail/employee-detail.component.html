@@ -1,6 +1,12 @@
-<div>
+<div class="detail_container">
 
     <h2>{{finalEmployee.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{finalEmployee.id}}</div>
+    <div>id: {{finalEmployee.id}}</div>
+    <div>name: {{finalEmployee.name}}</div>
+    <div>surname: {{finalEmployee.surname}}</div>
+    <div><b>etc...</b></div>
+
     <button (click)="goBack()">go back</button>
-  </div>
+    <button>Edit</button>
+    <button>Remove</button>
+</div>
