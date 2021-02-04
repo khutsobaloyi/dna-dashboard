@@ -1,0 +1,33 @@
+
+.add-container {
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+}
+form input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    border-radius: 2px;
+  }
+
+  button {
+    border-radius: 3px;
+    background-color: #4ec489; 
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 10px 0;
+    max-width: 100px;
+}
+
+button:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4ec489;
+}
