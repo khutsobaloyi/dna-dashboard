@@ -12,6 +12,7 @@ h1 {
   }
   body {
     padding: 10px;
+    background-color: rgb(173, 173, 184);
   }
   body, input[type="text"], button {
     color: #333;
