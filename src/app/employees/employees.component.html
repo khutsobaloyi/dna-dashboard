@@ -23,11 +23,9 @@
         <th>MOBILE NO.</th>
       </tr>
       
-      <tr *ngFor="let employee of finalEmployees">
+      <tr *ngFor="let employee of finalEmployees" routerLink="/detail/{{employee.id}}">
 
-        <a routerLink="/detail/{{employee.id}}">
         <td> {{employee.id}}</td>
-      </a>
         <td> {{employee.name}}</td>
         <td> {{employee.surname}}</td>
         
@@ -50,5 +48,10 @@
     
     </table>
   </div>
+
+  
+  <button mat-flat-button class="export-button" (click)="exportTable()">
+    Export Table
+  </button>
 </div>
 

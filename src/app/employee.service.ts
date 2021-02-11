@@ -43,6 +43,10 @@ export class EmployeeService {
    
   }
 
+  getAllDepartments() {
+    return this.http.get<Department[]>(this.URL +'/departments');
+  }
+  
   getStore(store_id: number) {
     console.log("store service called");
     return this.http.get<Store[]>(this.URL + '/stores/' + store_id);

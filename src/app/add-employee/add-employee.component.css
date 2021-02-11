@@ -10,31 +10,36 @@
     background-color: whitesmoke;
     padding: 5px;
 }
-form input {
-    background-color: whitesmoke;
-    width: 70%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid grey;
-    border-radius: 2px;
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+.employee-field {
+    width: 350px;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 
-  button {
+  
+  .mat-flat-button.mat-green {
     border-radius: 3px;
-    background-color: #4ec489; 
+    background-color: green;
     border: none;
     color: white;
-    padding: 10px 30px;
+    padding: 3px 10px;
     text-align: center;
     text-decoration: none;
     font-size: 14px;
-    margin: 10px 0;
-    max-width: 100px;
-}
+    margin: 6px 0;
 
-button:hover {
+ }
+
+
+.mat-flat-button:hover {
     background-color: white; 
-    color: black; 
+    color: green; 
     border: 2px solid #4ec489;
+    margin: 4px 0;
 }

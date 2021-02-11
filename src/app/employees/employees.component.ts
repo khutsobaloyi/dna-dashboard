@@ -24,6 +24,11 @@ export class EmployeesComponent implements OnInit {
     this.showEmployees();
   }
 
+  exportTable() {
+    //to be implemented
+  }
+
+
   showEmployees() {
     this.employeeService.getEmployees().subscribe((data: Employee[]) => {
       // this.employees = data;
