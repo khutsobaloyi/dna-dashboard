@@ -7,8 +7,18 @@ ul {
     overflow: hidden;
     background-color: rgb(218, 206, 206);
     width: 100%;
+    
   }
   
+  .mat-form-field.search-field {
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px !important;
+    color: blue;
+    margin: 5px 5px -15px 230px;
+    
+
+  }
   li {
     float: left;
   }
@@ -17,7 +27,8 @@ ul {
     display: block;
     color: rgb(27, 25, 25);
     text-align: center;
-    padding: 14px 16px;
+    padding: 20px 16px;
+    margin: 5px;
     text-decoration: none;
   }
   

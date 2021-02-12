@@ -38,6 +38,8 @@
     "@angular/platform-browser-dynamic": "~11.0.9",
     "@angular/router": "~11.0.9",
     "material": "^0.4.3",
+    "material-design-icons": "^3.0.1",
+    "material-design-icons-iconfont": "^6.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

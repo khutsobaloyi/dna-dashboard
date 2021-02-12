@@ -27,13 +27,14 @@ export class EmployeeDetailComponent implements OnInit {
 
   
   ngOnInit() {
-    this.getHero();
+    this.getEmployee();
   }
   
   goBack() {
     this.location.back();
   }
-  getHero() {
+  
+  getEmployee() {
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.employeeService.getEmployee(id)
       .subscribe((data: Employee[]) => {

@@ -6,6 +6,7 @@
     flex-direction: column;
     max-width: 80%;
     margin: auto;
+    box-shadow: 5px 10px 8px #888888;
 }
 
 h2 {

@@ -1,0 +1,56 @@
+
+.add-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    max-width: 700px;
+    margin: auto;
+    background-color: whitesmoke;
+    padding: 5px;
+    box-shadow: 5px 10px 8px #888888;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+.employee-field {
+    width: 350px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  
+  .mat-flat-button.mat-green {
+    border-radius: 3px;
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 6px 0;
+
+ }
+
+
+.mat-flat-button:hover {
+    background-color: white; 
+    color: green; 
+    border: 2px solid #4ec489;
+    margin: 4px 0;
+}
+
+.mat-flat-button.save-btn {
+    width: 300px;
+    background-color: rgb(218, 206, 206);
+}
+
+.mat-flat-button.save-btn:hover {
+    background-color: white;
+    border: 2px solid rgb(218, 206, 206);
+}

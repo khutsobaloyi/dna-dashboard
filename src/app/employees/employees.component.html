@@ -1,4 +1,4 @@
-<div *ngIf="finalEmployees">
+<div *ngIf="finalEmployees" class="container">
   
   <br/>
     
@@ -49,9 +49,11 @@
     </table>
   </div>
 
-  
+  <div class="btn-div">
   <button mat-flat-button class="export-button" (click)="exportTable()">
+    <mat-icon>download</mat-icon>
     Export Table
   </button>
+</div>
 </div>
 
