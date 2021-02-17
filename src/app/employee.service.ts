@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { Employee } from './models/employee';
 import { Department } from './models/department';
 import { Store } from './models/store';
+import { FinalEmployee } from './models/final-employee';
 
 
 @Injectable({
@@ -52,5 +53,54 @@ export class EmployeeService {
     return this.http.get<Store[]>(this.URL + '/stores/' + store_id);
   }
 
+  getAllStores() {
+    return this.http.get<Store[]>(this.URL +'/stores');
+  }
+
+  getLastEmployee() {
+    return this.http.get(this.URL + '/employees/last/1');
+  }
+  //create a new employee
+  createEmployee(employee: FinalEmployee) {
+    try {
+      this.createStore(employee.store);
+      employee.department.map((d) => {
+
+        this.createDepartment({...d, store_id: employee.store.store_id});
+      })
+
+      this.getLastEmployee().subscribe((data: any) => {
+        let new_id: number = data.max + 1;
+        let emp: Employee = {
+          emp_name: employee.name,
+          emp_surname: employee.surname,
+          emp_id: new_id,
+          emp_role: employee.role,
+          start_dat: employee.start_date,
+          end_dat: employee.end_date,
+          blank_id: employee.blank_id,
+          email: employee.email,
+          mobile_num: employee.mobile,
+          manager_id: employee.manager_id,
+          lib_patr: employee.lib_patr,
+          store_id: employee.store.store_id
+        }
+        return this.http.post<Employee>(this.URL + '/employees', emp);
+      })
+     
+      
+    } catch (err) {
+      console.log(err);
+
+    }
+  }
   
+  createStore(store: Store) {
+    return this.http.post<Store>(this.URL + '/stores', store);
+  }
+
+  createDepartment(deptStore: any) {
+    return this.http.post<Department>(this.URL + '/departments', deptStore);
+  }
 }
+ 

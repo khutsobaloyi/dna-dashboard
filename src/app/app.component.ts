@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
 
+interface AppState {
+
+}
 
 @Component({
   selector: 'app-root',

@@ -22,7 +22,15 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
+
+
+// import {AppState} from './shared/app.state';
+// import {RouterState} from './shared/router.state';
+// import {NgxsModule} from '@ngxs/store';
+// import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
+// import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 @NgModule({
   declarations: [
@@ -47,7 +55,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatCheckboxModule,
     MatDatepickerModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    NgxSpinnerModule, 
+    // NgxsModule.forRoot([ 
+      // RouterState,
+      // AppState
+    // ]),
+    // NgxsReduxDevtoolsPluginModule.forRoot(),
+    // NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

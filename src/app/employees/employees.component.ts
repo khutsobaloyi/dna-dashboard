@@ -5,6 +5,7 @@ import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee';
 import { Store } from '../models/store';
 import { Department } from '../models/department';
+import {NgxSpinnerService} from 'ngx-spinner';
 //import {Injectable} from '@angular/core'
 
 @Component({
@@ -18,7 +19,7 @@ export class EmployeesComponent implements OnInit {
   employees: Employee[] = [];
   departments: Department[] = [];
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService, private SpinnerService: NgxSpinnerService) {}
 
   ngOnInit(): void {
     this.showEmployees();
@@ -30,6 +31,8 @@ export class EmployeesComponent implements OnInit {
 
 
   showEmployees() {
+
+    this.SpinnerService.show();
     this.employeeService.getEmployees().subscribe((data: Employee[]) => {
       // this.employees = data;
 
@@ -79,6 +82,8 @@ export class EmployeesComponent implements OnInit {
                     });
                   }
                 );
+
+                this.SpinnerService.hide();
                 //let store: Store;
               }
             );

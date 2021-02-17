@@ -22,7 +22,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="employee-field">
-        <input matInput placeholder="surname" formControlName="lastName" />
+        <input matInput (change)="setEmail()" placeholder="surname" formControlName="lastName" />
         <mat-error
           *ngIf="lastName?.invalid && lastName?.touched"
           class="has-text-danger"
@@ -50,7 +50,7 @@
           *ngFor="let dep of departmentForms.controls; let i = index"
           [formGroupName]="i"
         >
-          <mat-select class="employee-field">
+          <mat-select class="employee-field" placeholder="department name">
             <div *ngFor="let d of departments">
               <mat-option value="d.id">{{ d.dept_name }}</mat-option>
             </div>
@@ -65,15 +65,12 @@
           Add Department
         </button>
       </div>
-      <mat-form-field class="employee-field">
-        <input matInput placeholder="store" formControlName="store" />
-        <mat-error
-          *ngIf="store?.invalid && store?.touched"
-          class="has-text-danger"
-        >
-          please enter a valid store
-        </mat-error>
-      </mat-form-field>
+      <br/>
+      <mat-select class="employee-field" placeholder="Store Name">
+        <div *ngFor="let s of stores">
+          <mat-option value="s.store_id" >{{ s.store_name }}</mat-option>
+        </div>
+      </mat-select>
       <mat-form-field class="employee-field">
         <input
           matInput
@@ -101,7 +98,7 @@
       </mat-form-field>
 
       <div>
-      <button mat-flat-button class="save-btn">
+      <button mat-flat-button [disabled]="employeeForm.invalid" class="save-btn">
         Save
       </button>
     </div>

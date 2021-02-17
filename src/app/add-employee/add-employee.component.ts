@@ -15,7 +15,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddEmployeeComponent implements OnInit {
   departments: Department[] = [];
   employee!: Employee;
-  Store!: Store;
+  stores: Store[] = [];
 
   employeeForm!: FormGroup;
 
@@ -28,6 +28,7 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit() {
 
     this.getAllDepartments();
+    this.getAllStores();
 
     this.employeeForm = this.fb.group({
       firstName: ['', [
@@ -53,10 +54,19 @@ export class AddEmployeeComponent implements OnInit {
         Validators.required
       ]]
     })
+
+    this.employeeForm.controls['email'].disable();
   }
 
+  setEmail() {
+    this.employeeForm.get('email')?.setValue(this.firstName?.value + '.' + this.lastName?.value + '@leroymerlin.co.za');
+  }
   getAllDepartments() {
     this.employeeService.getAllDepartments().subscribe((depts: Department[]) => this.departments = depts);
+  }
+
+  getAllStores() {
+    this.employeeService.getAllStores().subscribe((stores: Store[]) => this.stores = stores);
   }
   
   get firstName() {

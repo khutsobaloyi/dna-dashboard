@@ -10,6 +10,5 @@ export interface Employee {
     mobile_num: string;
     manager_id: number;
     lib_patr: string;
-    dept_id: number;
     store_id: number;
 }
