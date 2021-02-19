@@ -8,7 +8,6 @@
     <form [formGroup]="employeeForm">
       <mat-form-field class="employee-field">
         <input
-          
           matInput
           appearance="fill"
           placeholder="Name"
@@ -30,6 +29,23 @@
           Please enter a valid second name
         </mat-error>
       </mat-form-field>
+
+      <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a start date</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="start_date" (change)="loging()">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose an end date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="end_date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+
       <mat-form-field class="employee-field">
         <input matInput placeholder="blank_id" formControlName="blank_id" />
       </mat-form-field>
@@ -50,9 +66,9 @@
           *ngFor="let dep of departmentForms.controls; let i = index"
           [formGroupName]="i"
         >
-          <mat-select class="employee-field" placeholder="department name">
+          <mat-select class="employee-field" placeholder="department name" >
             <div *ngFor="let d of departments">
-              <mat-option value="d.id">{{ d.dept_name }}</mat-option>
+              <mat-option value="d.dept_id">{{ d.dept_name }}</mat-option>
             </div>
           </mat-select>
           <button mat-raised-button color="warn" (click)="deleteDepartment(i)">
@@ -66,18 +82,29 @@
         </button>
       </div>
       <br/>
-      <mat-select class="employee-field" placeholder="Store Name">
-        <div *ngFor="let s of stores">
-          <mat-option value="s.store_id" >{{ s.store_name }}</mat-option>
+      <mat-select class="employee-field" placeholder="Store Name" (change)="changeStore($event)" formControlName="store">
+        <div *ngFor="let s of stores; let i = index">
+          <mat-option [value]="s" >{{ s.store_name }}</mat-option>
         </div>
       </mat-select>
-      <mat-form-field class="employee-field">
+
+
+      <mat-form-field class = "employee-field">
         <input
-          matInput
-          placeholder="manager name"
-          fromControlName="manager_id"
-        />
-      </mat-form-field>
+           placeholder = "manager name"
+           matInput 
+           formControlName = "manager"
+           [matAutocomplete] = "auto"
+           
+          >
+        <mat-autocomplete #auto = "matAutocomplete">
+           <mat-option *ngFor = "let employee of filteredEmployees | async" [value] = "employee.emp_id + ' ' + employee.emp_name">
+              {{employee.emp_name}}  {{employee.emp_surname }} with id: {{employee.emp_id}}
+           </mat-option>
+        </mat-autocomplete>
+     </mat-form-field>
+
+
       <mat-form-field class="employee-field">
         <input matInput placeholder="email" formControlName="email" />
         <mat-error
@@ -98,7 +125,7 @@
       </mat-form-field>
 
       <div>
-      <button mat-flat-button [disabled]="employeeForm.invalid" class="save-btn">
+      <button mat-flat-button class="save-btn" (click)="saveEmployee()">
         Save
       </button>
     </div>

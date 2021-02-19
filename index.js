@@ -3,7 +3,20 @@ const { app, BrowserWindow } = require('electron')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+const electron = require('electron');
+const path = require('path'); 
+const fs = require('fs');
+const ipcMain = electron.ipcMain;
 
+const dialog = electron.dialog;
+
+//hold the array of directory paths selected by user
+
+let dir;
+
+
+
+//------------------------------------------------------------------------
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
@@ -19,6 +32,42 @@ function createWindow () {
 
   // Open the DevTools.
   win.webContents.openDevTools()
+
+  //trying to create a save thingy
+  ipcMain.on('selectDirectory', (event,  arg) => {
+
+    //console.log(arg);
+    dialog.showSaveDialog({ 
+      title: 'Select the File Path to save', 
+      defaultPath: path.join(__dirname, '../assets/sample.csv'), 
+      // defaultPath: path.join(__dirname, '../assets/'), 
+      buttonLabel: 'Save', 
+      // Restricting the user to only Text Files. 
+      filters: [ 
+        { 
+          name: 'CSV Files', 
+          extensions: ['csv'] 
+        }, ], 
+      properties: [] 
+    }).then(file => { 
+      // Stating whether dialog operation was cancelled or not. 
+      console.log(file.canceled); 
+      if (!file.canceled) { 
+        console.log(file.filePath.toString()); 
+        
+        // Creating and Writing to the sample.txt file 
+        fs.writeFile(file.filePath.toString(), 
+              arg, function (err) { 
+          if (err) throw err; 
+          console.log('Saved!'); 
+        }); 
+      } 
+    }).catch(err => { 
+      console.log(err) 
+    }); 
+
+  })
+  
 
   // Emitted when the window is closed.
   win.on('closed', () => {

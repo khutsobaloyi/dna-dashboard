@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 
@@ -24,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 
+import { NgxElectronModule } from 'ngx-electron';
 
 
 // import {AppState} from './shared/app.state';
@@ -49,14 +52,17 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatAutocompleteModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatCardModule,
     MatIconModule,
-    NgxSpinnerModule, 
+    NgxSpinnerModule,
+    NgxElectronModule, 
     // NgxsModule.forRoot([ 
       // RouterState,
       // AppState

@@ -41,7 +41,14 @@ export class EmployeeService {
      console.log("department service called")
       return this.http.get<Department[]>(this.URL + '/departments/' + dept_id);
     
-   
+  }
+
+  getDeptWithName(dept_name: string) {
+    return this.http.get<Department[]>(this.URL + '/departments/search/' + dept_name);
+  }
+
+  getStoreWithName(store_name: string) {
+    return this.http.get<Store[]>(this.URL + '/stores/search/' + store_name);
   }
 
   getAllDepartments() {
@@ -62,6 +69,7 @@ export class EmployeeService {
   }
   //create a new employee
   createEmployee(employee: FinalEmployee) {
+    console.log(employee);
     try {
       this.createStore(employee.store);
       employee.department.map((d) => {
@@ -69,7 +77,7 @@ export class EmployeeService {
         this.createDepartment({...d, store_id: employee.store.store_id});
       })
 
-      this.getLastEmployee().subscribe((data: any) => {
+     return this.getLastEmployee().subscribe((data: any) => {
         let new_id: number = data.max + 1;
         let emp: Employee = {
           emp_name: employee.name,
@@ -91,7 +99,7 @@ export class EmployeeService {
       
     } catch (err) {
       console.log(err);
-
+      return null;
     }
   }
   
