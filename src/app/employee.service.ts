@@ -69,16 +69,22 @@ export class EmployeeService {
   }
   //create a new employee
   createEmployee(employee: FinalEmployee) {
-    console.log(employee);
+    
     try {
-      this.createStore(employee.store);
+      this.createStore(employee.store).subscribe((data: any) => {
+        console.log(data);
+      });
       employee.department.map((d) => {
 
-        this.createDepartment({...d, store_id: employee.store.store_id});
+        this.createDepartment({...d, store_id: employee.store.store_id}).subscribe((data: any) => {
+          console.log(data);
+        });
       })
 
      return this.getLastEmployee().subscribe((data: any) => {
-        let new_id: number = data.max + 1;
+       
+        let new_id = data[0].max + 1;
+        console.log(new_id);
         let emp: Employee = {
           emp_name: employee.name,
           emp_surname: employee.surname,
@@ -93,7 +99,17 @@ export class EmployeeService {
           lib_patr: employee.lib_patr,
           store_id: employee.store.store_id
         }
-        return this.http.post<Employee>(this.URL + '/employees', emp);
+        console.log("employee to be submitted to api");
+        console.log(emp);
+         this.http.post<Employee>(this.URL + '/employees', emp).subscribe((data: any) => {
+           console.log(data);
+           //link employee with department
+           employee.department.map((d) => {
+             this.linkEmployee(d.dept_id, emp.emp_id).subscribe((data: any) => {
+               console.log(data);
+             })
+           })
+         });
       })
      
       
@@ -103,12 +119,36 @@ export class EmployeeService {
     }
   }
   
+  linkEmployee(dept_id: number, emp_id: number) {
+    try {
+      return this.http.post(this.URL + '/employees/dept', {dept_id, emp_id});
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
   createStore(store: Store) {
+    console.log("create store");
+    try {
+      console.log(store);
     return this.http.post<Store>(this.URL + '/stores', store);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+    
   }
 
   createDepartment(deptStore: any) {
-    return this.http.post<Department>(this.URL + '/departments', deptStore);
+    console.log("create department");
+    try {
+      console.log(deptStore);
+      return this.http.post<Department>(this.URL + '/departments', deptStore);   
+    } catch (err) {
+      console.log(err)
+      return err;
+    }
+   
   }
 }
  

@@ -66,9 +66,9 @@
           *ngFor="let dep of departmentForms.controls; let i = index"
           [formGroupName]="i"
         >
-          <mat-select class="employee-field" placeholder="department name" >
+          <mat-select class="employee-field" placeholder="department name" formControlName="dep" >
             <div *ngFor="let d of departments">
-              <mat-option value="d.dept_id">{{ d.dept_name }}</mat-option>
+              <mat-option [value]="d">{{ d.dept_name }}</mat-option>
             </div>
           </mat-select>
           <button mat-raised-button color="warn" (click)="deleteDepartment(i)">

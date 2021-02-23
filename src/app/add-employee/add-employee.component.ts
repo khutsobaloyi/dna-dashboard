@@ -93,9 +93,11 @@ export class AddEmployeeComponent implements OnInit {
     {
       //look up corresponding object in api
       //NB: NOT YET WORKING BECAUSE OF HOW FORMARRAY IS HANDLED
-      this.employeeService.getDeptWithName(dep.value).subscribe((d: Department[]) => {
-        this.finalDepartments.push(d[0]);
-      });
+      console.log(dep.value.dep);
+      this.finalDepartments.push(dep.value.dep);
+      //this.employeeService.getDeptWithName(dep.value).subscribe((d: Department[]) => {
+      //  this.finalDepartments.push(d[0]);
+     // });
     }
 
     //create an employee
@@ -106,10 +108,10 @@ export class AddEmployeeComponent implements OnInit {
       start_date: this.startDate?.value.getDate() + '/' + (this.startDate?.value.getMonth() + 1) + '/' + this.startDate?.value.getFullYear(),
       end_date: this.startDate?.value.getDate() + '/' + (this.startDate?.value.getMonth() + 1) + '/' + this.startDate?.value.getFullYear(),
       blank_id: this.blankId?.value,
-      role: this.role?.value,
+      role: this.role?.value.toUpperCase(),
       department: this.finalDepartments,
       store: this.store?.value,
-      manager_id: this.manager?.value.split(' ')[0],
+      manager_id: this.manager?.value.split(' ')[0] === "" ? 0: parseInt(this.manager?.value.split(' ')[0]),
       lib_patr: '',
       lib_nom_en: '',
       lib_pre_en: '',
@@ -123,12 +125,13 @@ export class AddEmployeeComponent implements OnInit {
 
     console.log(this.finalEmployee);
     //submit data
-    // if(this.employeeService.createEmployee(this.finalEmployee) !== null)
-    // {
-      // console.log("uploaded...");
-    // } else {
-      // console.log("there was something wrong while posting data");
-    // }
+    this.employeeService.createEmployee(this.finalEmployee)
+    //  if(this.employeeService.createEmployee(this.finalEmployee) !== null)
+    //  {
+      //  console.log("uploaded...");
+    //  } else {
+      //  console.log("there was something wrong while posting data");
+    //  }
         
   }
 
@@ -206,7 +209,7 @@ export class AddEmployeeComponent implements OnInit {
 
   addDepartment() {
     const department = this.fb.group({
-      name: [],
+      dep: [],
     })
 
     this.departmentForms.push(department);
