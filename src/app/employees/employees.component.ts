@@ -1,7 +1,9 @@
-import { Component, OnInit, ɵEMPTY_MAP } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ɵEMPTY_MAP } from '@angular/core';
 import { FinalEmployee } from '../models/final-employee';
 import { EmployeeService } from '../employee.service';
 
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 import { Employee } from '../models/employee';
 import { Store } from '../models/store';
 import { Department } from '../models/department';
@@ -19,6 +21,16 @@ export class EmployeesComponent implements OnInit {
   finalEmployees: FinalEmployee[] = [];
   employees: Employee[] = [];
   departments: Department[] = [];
+
+  //material table
+  displayedColumns: string[] = ['id','name', 'surname', 'start_date', 'end_date', 'role', 'dept_id', 'dept_name', 'store_id', 'store_name', 'manager_id', 'email', 'mobile'];
+  dataSource = new MatTableDataSource<FinalEmployee>(this.finalEmployees);
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   constructor(private employeeService: EmployeeService, private SpinnerService: NgxSpinnerService, private _electronService: ElectronService) {}
 
@@ -119,7 +131,11 @@ export class EmployeesComponent implements OnInit {
                 //let store: Store;
               }
             );
-          });
+          }, (err) => console.log(err),
+          () => {
+          
+          }
+          );
       });
     });
   }

@@ -27,6 +27,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 
 import { NgxElectronModule } from 'ngx-electron';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 
 // import {AppState} from './shared/app.state';
@@ -53,9 +55,11 @@ import { NgxElectronModule } from 'ngx-electron';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
+    MatPaginatorModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    MatTableModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
