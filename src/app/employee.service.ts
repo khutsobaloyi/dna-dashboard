@@ -60,7 +60,17 @@ export class EmployeeService {
     return this.http.get(this.URL + '/getEmployeesList?page=' + page + '&page_size=' + page_size, {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}});
   }
 
+  //get employees list by storeid
+  getEmployeesListByStoreId(page: number, page_size: number, store_id: number) {
+    return this.http.get(this.URL + '/getEmployeesListByStoreId?store_id=' + store_id + '&page=' + page + '&page_size=' + page_size, {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}});
+  }
 
+  //get employee by id
+  getEmployeeById(emp_id: number) {
+    return this.http.get(this.URL + '/getEmployeeById?employee_id=' + emp_id, {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}});
+  }
+
+  
 
 
 
