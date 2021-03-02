@@ -46,12 +46,19 @@ export class EmployeeService {
 
   //creat Department
   createDepartment(departmentBody: any) {
-    return this.http.post(this.URL + '/createDepartment', {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}});
+    return this.http.post(this.URL + '/createDepartment', {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}, body: {departmentBody}});
   }  
 
 
+  //update Department 
+  updateDepartment(departmentBody: any) {
+    return this.http.put(this.URL + '/updateDepartment', {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}, body: {departmentBody}})
+  }
 
-
+  //get employees list
+  getEmployeesList(page: number, page_size: number) {
+    return this.http.get(this.URL + '/getEmployeesList?page=' + page + '&page_size=' + page_size, {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}});
+  }
 
 
 
