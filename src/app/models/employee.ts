@@ -1,14 +1,15 @@
+import { EmployeeDepartment } from "./employee-department";
+
 export interface Employee {
-    emp_id: number;
-    emp_name: string;
-    emp_surname: string;
-    start_dat: string;
-    end_dat: string;
-    blank_id: string;
-    emp_role: string;
+    employeeId: number;
+    employeeCode: string;
+    firstName: string;
+    lastName: string;
+    departmentCode: string;
+    departmentDescription: string;
+    phoneNumber: string;
     email: string;
-    mobile_num: string;
-    manager_id: number;
-    lib_patr: string;
-    store_id: number;
+    manager: Employee;
+    isActive: boolean;
+    employeeDepartmentslist: EmployeeDepartment;
 }
