@@ -3,7 +3,7 @@ import { FinalEmployee } from '../models/final-employee';
 import { EmployeeService } from '../employee.service';
 
 import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { Employee } from '../models/employee';
 import { Store } from '../models/store';
 import { Department } from '../models/department';
@@ -16,20 +16,20 @@ import { ElectronService } from 'ngx-electron';
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.css'],
 })
-export class EmployeesComponent implements OnInit {
+export class EmployeesComponent implements AfterViewInit {
   //employees = EMPLOYEES;
   finalEmployees: FinalEmployee[] = [];
   employees: Employee[] = [];
   departments: Department[] = [];
 
   //material table
-  displayedColumns: string[] = ['id','name', 'surname', 'start_date', 'end_date', 'role', 'dept_id', 'dept_name', 'store_id', 'store_name', 'manager_id', 'email', 'mobile'];
-  dataSource = new MatTableDataSource<FinalEmployee>(this.finalEmployees);
+  displayedColumns: string[] = ['employeeId','name', 'surname', 'dept_id', 'dept_name', 'manager_id', 'email', 'mobile'];
+  dataSource!: MatTableDataSource<Employee>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    //not working properly. so moved to showEmployees
   }
 
   constructor(private employeeService: EmployeeService, private SpinnerService: NgxSpinnerService, private _electronService: ElectronService) {}
@@ -40,9 +40,8 @@ export class EmployeesComponent implements OnInit {
 
   exportTable() {
 
-    this.employeeService.getStoresList().subscribe((data: Store[]) => {
-      console.log(data);
-    })
+    console.log(this.dataSource.data);
+    console.log(this.employees);
 
     //to be implemented
     // let csvData = "lib_nom;lib_pre;cod_sirh;num_uid;dat_debctt;dat_finctt;lib_mis;cod_raysrv;lib_raysrv;cod_uo;lib_uo;lib_ens;lib_pay;num_mngr;lib_patr;lib_nom_en;lib_pre_en;lib_patr_en;lib_mis_en;lib_raysrv_en;lib_uo_en;mail;mobile\n";
@@ -80,7 +79,15 @@ export class EmployeesComponent implements OnInit {
 
   showEmployees() {
 
-    //this.SpinnerService.show();
+    this.SpinnerService.show();
+
+    this.employeeService.getEmployeesList(1, 10).subscribe((data: any) => {
+      this.employees = data.employeesList;
+      console.log(this.employees);
+      this.dataSource = new MatTableDataSource<Employee>(this.employees);
+      this.dataSource.paginator = this.paginator;
+     // this.table.renderRows();
+    });
     //this.employeeService.getEmployees().subscribe((data: Employee[]) => {
       // this.employees = data;
 
@@ -132,7 +139,7 @@ export class EmployeesComponent implements OnInit {
     //             );
     //             //arrayOfObjects.sort((a, b) => (a.propertyToSortBy < b.propertyToSortBy ? -1 : 1));
     //             this.finalEmployees.sort((a: FinalEmployee, b: FinalEmployee) => (a.id < b.id ? -1 : 1));
-    //             this.SpinnerService.hide();
+                 this.SpinnerService.hide();
     //             //let store: Store;
     //           }
     //         );

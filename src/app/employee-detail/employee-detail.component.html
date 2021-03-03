@@ -1,35 +1,36 @@
 <mat-card class="detail-container">
  
-  <div class="inner-container">
-  <h2>{{ finalEmployee.name | uppercase }} Details</h2>
-  <div><b>Id:</b> {{ finalEmployee.id }}</div>
-  <div><b>Name:</b> {{ finalEmployee.name }}</div>
-  <div><b>Surname:</b> {{ finalEmployee.surname }}</div>
-  <div><b>Start Date:</b>{{ finalEmployee.start_date}}</div>
-  <div><b>End Date: </b> {{finalEmployee.end_date}}</div>
-  <div><b>Role: </b> {{finalEmployee.role}}</div>
-  <div><b>Department:</b> <br/>
+    <div class="inner-container">
+    <h2>{{ employee.firstName | uppercase }} Details</h2>
+    <div><b>Id:</b> {{ employee.employeeId }}</div>
+    <div><b>LDAP:</b> {{employee.employeeCode}}</div>
+    <div><b>Name:</b> {{ employee.firstName }}</div>
+    <div><b>Surname:</b> {{ employee.lastName }}</div>
+    <div><b>Department Code:</b>{{ employee.departmentCode}}</div>
+    <div><b>Department Description: </b> {{employee.departmentDescription}}</div>
+    <div><b>Role: </b> </div>
+    <div><b>Manager:</b> <br/>
+      <ul>
+        <li><b>Id:</b> {{employee.manager.employeeId}}</li>
+        <li> <b>Name:</b> {{employee.manager.firstName}}</li>
+      </ul>
+    </div>
+    <!--<div *ngIf="employee.employeeDepartmentsList"><b>Store:</b>
     <ul>
-      <li><b>Id:</b> {{finalEmployee.department[0].dept_id}}</li>
-      <li> <b>Name:</b> {{finalEmployee.department[0].dept_name}}</li>
+      <li><b>Id:</b> {{}}</li>
+      <li><b>Name:</b> {{finalEmployee.store.store_name}}</li>
+      <li><b>Company Initials: </b> {{finalEmployee.store.company_initials}}</li>
+      <li><b>Country: </b> {{finalEmployee.store.country}}</li>
     </ul>
+    </div> -->
+    <div><b>Email:</b> {{employee.email}}</div>
+    <div><b>Mobile: </b> {{employee.phoneNumber}}</div>
+  
+    <div class="nav-buttons">
+      <button (click)="goBack()" class="back">go back</button>
+      <button class="edit" routerLink="/edit/{{employee.employeeId}}">Edit</button>
+      <button class="remove">Remove</button>
+    </div>
   </div>
-  <div><b>Store:</b>
-  <ul>
-    <li><b>Id:</b> {{finalEmployee.store.store_id}}</li>
-    <li><b>Name:</b> {{finalEmployee.store.store_name}}</li>
-    <li><b>Company Initials: </b> {{finalEmployee.store.company_initials}}</li>
-    <li><b>Country: </b> {{finalEmployee.store.country}}</li>
-  </ul>
-  </div>
-  <div><b>Manager Id:</b> {{finalEmployee.manager_id}}</div>
-  <div><b>Email:</b> {{finalEmployee.email}}</div>
-  <div><b>Mobile: </b> {{finalEmployee.mobile}}</div>
-
-  <div class="nav-buttons">
-    <button (click)="goBack()" class="back">go back</button>
-    <button class="edit" routerLink="/edit/{{finalEmployee.id}}">Edit</button>
-    <button class="remove">Remove</button>
-  </div>
-</div>
-</mat-card>
+  </mat-card>
+  

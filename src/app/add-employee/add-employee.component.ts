@@ -17,8 +17,6 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class AddEmployeeComponent implements OnInit {
   departments: Department[] = [];
-  employees: Employee[] = [];
-  filteredEmployees?: Observable<Employee[]>;
 
   finalDepartments: Department[] = []; //departments to be submitted
   finalEmployee!: FinalEmployee;
@@ -37,7 +35,6 @@ export class AddEmployeeComponent implements OnInit {
 
     this.getAllDepartments();
     this.getAllStores();
-    this.getEmployees();
 
     this.employeeForm = this.fb.group({
       firstName: ['', [
@@ -68,17 +65,17 @@ export class AddEmployeeComponent implements OnInit {
 
     this.employeeForm.controls['email'].disable();
 
-    this.filteredEmployees = this.employeeForm.get('manager')!.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    // this.filteredEmployees = this.employeeForm.get('manager')!.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filter(value))
+    // );
   }
 
-  private _filter(value: string) {
-    const filterValue = value.toLowerCase();
+  // private _filter(value: string) {
+  //   const filterValue = value.toLowerCase();
 
-    return this.employees.filter(emp => emp.emp_name.toLowerCase().includes(filterValue));
-  }
+  //   return this.employees.filter(emp => emp.emp_name.toLowerCase().includes(filterValue));
+  // }
 
   changeStore(e: any) {
     this.employeeForm.get('store')?.setValue(e.target.value);
@@ -125,7 +122,7 @@ export class AddEmployeeComponent implements OnInit {
 
     console.log(this.finalEmployee);
     //submit data
-    this.employeeService.createEmployee(this.finalEmployee)
+    //this.employeeService.createEmployee(this.finalEmployee)
     //  if(this.employeeService.createEmployee(this.finalEmployee) !== null)
     //  {
       //  console.log("uploaded...");
@@ -146,14 +143,14 @@ export class AddEmployeeComponent implements OnInit {
     this.employeeForm.get('email')?.setValue(this.firstName?.value + '.' + this.lastName?.value + '@leroymerlin.co.za');
   }
   getAllDepartments() {
-    this.employeeService.getAllDepartments().subscribe((depts: Department[]) => this.departments = depts);
+    this.employeeService.getDepartmentsList().subscribe((depts: Department[]) => this.departments = depts);
   }
 
   getEmployees() {
-    this.employeeService.getEmployees().subscribe((emp: Employee[]) => this.employees = emp);
+//this.employeeService.getEmployees().subscribe((emp: Employee[]) => this.employees = emp);
   }
   getAllStores() {
-    this.employeeService.getAllStores().subscribe((stores: Store[]) => {
+    this.employeeService.getStoresList().subscribe((stores: Store[]) => {
       console.log("getAllStores() called ..");
       console.log(stores);
       this.stores = stores;

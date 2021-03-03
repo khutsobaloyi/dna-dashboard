@@ -67,81 +67,8 @@ export class EmployeeService {
 
   //get employee by id
   getEmployeeById(emp_id: number) {
-    return this.http.get(this.URL + '/getEmployeeById?employee_id=' + emp_id, {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}});
+    return this.http.get<Employee>(this.URL + '/getEmployeeById?employee_id=' + emp_id, {headers: { 'content-Type': 'application/json', 'Authorization': this.authToken}});
   }
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //get all employees
-  getEmployees() {
-    console.log("employee service called");
-    return this.http.get<Employee[]>(this.URL + '/employees');
-  }
-
-  getEmployee(id: number) {
-    return this.http.get<Employee[]>(this.URL + '/employees/' + id);
-  }
-  
-  getEDepartment(emp_id: number) {
-    console.log("employee department service called");
-    
-    return this.http.get<{dept_id: number, emp_id: number}[]>(this.URL + '/departments/emp/' + emp_id);
-     
-  }
-
-  getDepartments(dept_id: number) {
-    
-     console.log("department service called")
-      return this.http.get<Department[]>(this.URL + '/departments/' + dept_id);
-    
-  }
-
-  getDeptWithName(dept_name: string) {
-    return this.http.get<Department[]>(this.URL + '/departments/search/' + dept_name);
-  }
-
-  getStoreWithName(store_name: string) {
-    return this.http.get<Store[]>(this.URL + '/stores/search/' + store_name);
-  }
-
-  getAllDepartments() {
-    return this.http.get<Department[]>(this.URL +'/departments');
-  }
-  
-  getStore(store_id: number) {
-    console.log("store service called");
-    return this.http.get<Store[]>(this.URL + '/stores/' + store_id);
-  }
-
-  getAllStores() {
-    return this.http.get<Store[]>(this.URL +'/stores');
-  }
-
-  getLastEmployee() {
-    return this.http.get(this.URL + '/employees/last/1');
-  }
-  
-
-  
 }
  

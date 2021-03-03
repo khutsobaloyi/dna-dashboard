@@ -230,18 +230,18 @@ export class EditEmployeeComponent implements OnInit {
     this.employeeForm.get('email')?.setValue(this.firstName?.value + '.' + this.lastName?.value + '@leroymerlin.co.za');
   }
   getAllDepartments() {
-    this.employeeService.getAllDepartments().subscribe((depts: Department[]) => this.departments = depts);
+  //  this.employeeService.getAllDepartments().subscribe((depts: Department[]) => this.departments = depts);
   }
 
   getEmployees() {
-    this.employeeService.getEmployees().subscribe((emp: Employee[]) => this.employees = emp);
+  //  this.employeeService.getEmployees().subscribe((emp: Employee[]) => this.employees = emp);
   }
   getAllStores() {
-    this.employeeService.getAllStores().subscribe((stores: Store[]) => {
-      console.log("getAllStores() called ..");
-      console.log(stores);
-      this.stores = stores;
-    });
+    // this.employeeService.getAllStores().subscribe((stores: Store[]) => {
+    //   console.log("getAllStores() called ..");
+    //   console.log(stores);
+    //   this.stores = stores;
+    // });
   }
   
   get firstName() {

@@ -17,7 +17,7 @@ import { Store } from '../models/store';
 export class EmployeeDetailComponent implements OnInit {
 
   
-  finalEmployee!: FinalEmployee;
+  employee!: Employee;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,63 +35,67 @@ export class EmployeeDetailComponent implements OnInit {
   }
   
   getEmployee() {
-    const id = +this.route.snapshot.paramMap.get('id')!;
-    this.employeeService.getEmployee(id)
-      .subscribe((data: Employee[]) => {
-        // this.employees = data;
+     const id = +this.route.snapshot.paramMap.get('id')!;
+
+     this.employeeService.getEmployeeById(id).subscribe((data: Employee) => {
+       this.employee = data;
+     })
+    // this.employeeService.getEmployee(id)
+    //   .subscribe((data: Employee[]) => {
+    //     // this.employees = data;
   
-          let employee = data[0]; 
-          let dept: Department[] = [];
-          let store: Store[] = [];
+    //       let employee = data[0]; 
+    //       let dept: Department[] = [];
+    //       let store: Store[] = [];
   
-          this.employeeService
-            .getEDepartment(employee.emp_id)
-            .subscribe((eDept: { dept_id: number; emp_id: number }[]) => {
-              this.employeeService.getDepartments(eDept[0].dept_id).subscribe(
-                (dep: Department[]) => {
-                  dept = dep;
-                },
-                (error) => console.log(error),
+    //       this.employeeService
+    //         .getEDepartment(employee.emp_id)
+    //         .subscribe((eDept: { dept_id: number; emp_id: number }[]) => {
+    //           this.employeeService.getDepartments(eDept[0].dept_id).subscribe(
+    //             (dep: Department[]) => {
+    //               dept = dep;
+    //             },
+    //             (error) => console.log(error),
   
-                () => {
-                  this.employeeService.getStore(employee.store_id).subscribe(
-                    (s: Store[]) => {
-                      store.push(s[0]);
-                      console.log('the store name ');
-                    },
-                    (error) => console.log(error),
-                    //completed code
-                    () => {
-                      this.finalEmployee = {
-                        surname: employee.emp_surname, //lib_nom
-                        name: employee.emp_name, //lib_pre
-                        id: employee.emp_id,
-                        blank_id: employee.blank_id, //cod_sirh
-                        start_date: employee.start_dat, //dat_debctt
-                        end_date: employee.end_dat, //dat_finctt
-                        role: employee.emp_role, //lib_mis
-                        department: dept,
-                        store: store[0],
-                        manager_id: employee.manager_id, //num_mngr
-                        lib_patr: employee.lib_patr,
-                        //english parts
-                        lib_nom_en: '',
-                        lib_pre_en: '',
-                        lib_patr_en: '',
-                        lib_mis_en: '',
-                        lib_raysrv_en: '',
-                        lib_ou_en: '',
-                        email: employee.email, //mail
-                        mobile: employee.mobile_num,
-                      }
-                    }
-                  );
-                  //let store: Store;
-                }
-              );
-            });
+    //             () => {
+    //               this.employeeService.getStore(employee.store_id).subscribe(
+    //                 (s: Store[]) => {
+    //                   store.push(s[0]);
+    //                   console.log('the store name ');
+    //                 },
+    //                 (error) => console.log(error),
+    //                 //completed code
+    //                 () => {
+    //                   this.finalEmployee = {
+    //                     surname: employee.emp_surname, //lib_nom
+    //                     name: employee.emp_name, //lib_pre
+    //                     id: employee.emp_id,
+    //                     blank_id: employee.blank_id, //cod_sirh
+    //                     start_date: employee.start_dat, //dat_debctt
+    //                     end_date: employee.end_dat, //dat_finctt
+    //                     role: employee.emp_role, //lib_mis
+    //                     department: dept,
+    //                     store: store[0],
+    //                     manager_id: employee.manager_id, //num_mngr
+    //                     lib_patr: employee.lib_patr,
+    //                     //english parts
+    //                     lib_nom_en: '',
+    //                     lib_pre_en: '',
+    //                     lib_patr_en: '',
+    //                     lib_mis_en: '',
+    //                     lib_raysrv_en: '',
+    //                     lib_ou_en: '',
+    //                     email: employee.email, //mail
+    //                     mobile: employee.mobile_num,
+    //                   }
+    //                 }
+    //               );
+    //               //let store: Store;
+    //             }
+    //           );
+    //         });
         
-      }); //until here);
+    //  }); //until here);
   }
 
 }
