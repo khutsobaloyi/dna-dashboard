@@ -1,5 +1,9 @@
 <div *ngIf="employees" class="container">
   
+  <mat-form-field class="search-field">
+    <input matInput placeholder="Search...">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
   <br/>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" >

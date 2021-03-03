@@ -10,15 +10,7 @@ ul {
     
   }
   
-  .mat-form-field.search-field {
-    width: 50%;
-    border: 1px solid #ccc;
-    border-radius: 5px !important;
-    color: blue;
-    margin: 5px 5px -15px 230px;
-    
-
-  }
+  
   li {
     float: left;
   }

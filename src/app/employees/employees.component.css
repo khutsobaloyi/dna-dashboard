@@ -5,6 +5,13 @@
   justify-content: center;
 }
 
+.mat-form-field.search-field {
+  width: 30%;
+  padding-left: 30%;
+  color: blue;
+  margin: 5px 5px -15px 230px;
+}
+
 .container caption {
   font-size: large;
   margin: 10px;

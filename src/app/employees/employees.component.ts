@@ -81,7 +81,7 @@ export class EmployeesComponent implements AfterViewInit {
 
     this.SpinnerService.show();
 
-    this.employeeService.getEmployeesList(1, 10).subscribe((data: any) => {
+    this.employeeService.getEmployeesList(1, 20000).subscribe((data: any) => {
       this.employees = data.employeesList;
       console.log(this.employees);
       this.dataSource = new MatTableDataSource<Employee>(this.employees);
