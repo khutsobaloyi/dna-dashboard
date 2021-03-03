@@ -8,11 +8,25 @@
     <div><b>Surname:</b> {{ employee.lastName }}</div>
     <div><b>Department Code:</b>{{ employee.departmentCode}}</div>
     <div><b>Department Description: </b> {{employee.departmentDescription}}</div>
-    <div><b>Role: </b> </div>
+    <div><b>Role: </b> {{employee.missionEN}}</div>
+    <div><b>Start Date: </b> {{employee.startDate}}</div>
+    <div><b>End Date: </b> {{employee.endDate}}</div>
+    <div><b>Active?:</b> {{employee.isActive}}</div>
     <div><b>Manager:</b> <br/>
       <ul>
         <li><b>Id:</b> {{employee.manager.employeeId}}</li>
         <li> <b>Name:</b> {{employee.manager.firstName}}</li>
+      </ul>
+    </div>
+    <caption> Department Details:</caption>
+    <div *ngFor="let department of employee.employeeDepartmentslist">
+      <ul>
+        <li><b>Department ID:</b> {{department.departmentId}}</li>
+        <li><b>Department Name:</b> {{department.departmentName}}</li>
+        <li><b>Store ID: </b> {{department.storeId}}</li>
+        <li><b> Start Date: </b> {{department.startDate}}</li>
+        <li><b> End Date: </b> {{department.endDate}}</li>
+        <li><b>Active?: </b> {{department.isActive }}</li>
       </ul>
     </div>
     <!--<div *ngIf="employee.employeeDepartmentsList"><b>Store:</b>

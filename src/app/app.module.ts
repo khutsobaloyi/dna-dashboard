@@ -24,11 +24,11 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {NgxSpinnerModule} from 'ngx-spinner';
 
 import { NgxElectronModule } from 'ngx-electron';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 // import {AppState} from './shared/app.state';
@@ -65,8 +65,8 @@ import { MatTableModule } from '@angular/material/table';
     MatNativeDateModule,
     MatCardModule,
     MatIconModule,
-    NgxSpinnerModule,
     NgxElectronModule, 
+    MatFormFieldModule
     // NgxsModule.forRoot([ 
       // RouterState,
       // AppState

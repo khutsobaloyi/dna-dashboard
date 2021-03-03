@@ -1,10 +1,11 @@
 <div *ngIf="employees" class="container">
   
   <mat-form-field class="search-field">
-    <input matInput placeholder="Search...">
+    <input matInput placeholder="Search..." (keyup)="searchString($event)">
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
   <br/>
+  <caption> List of Employees</caption>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" >
       
@@ -67,14 +68,7 @@
   
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
-
-
-    <caption> List of Employees</caption>
    
-
-  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Please Wait. </p>  
-    </ngx-spinner> 
     
   <div class="btn-div">
   <button mat-flat-button class="export-button" (click)="exportTable()">
